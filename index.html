@@ -144,12 +144,15 @@
     }
     .comparison {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 24px;
       margin-bottom: 34px;
       align-items: start;
+      justify-content: center;
     }
     .card {
+      max-width: 360px;
+      width: 100%;
       background: #121010;
       border: 1px solid var(--border);
       border-radius: 32px;
@@ -555,23 +558,24 @@
         margin-bottom: 8px;
       }
       .comparison {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
         gap: 18px;
       }
       .card {
         border-radius: 28px;
+        max-width: 300px;
       }
       .card-header {
-        padding: 18px 18px 0;
+        padding: 16px 16px 0;
       }
       .card-body {
-        padding: 22px 20px 24px;
+        padding: 18px 16px 20px;
       }
       .card-title {
-        font-size: 1.25rem;
+        font-size: 1.18rem;
       }
       .price {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
       }
       .footer {
         padding: 0 6px;
