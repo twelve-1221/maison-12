@@ -144,11 +144,15 @@
     }
     .comparison {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
       gap: 32px;
       margin-bottom: 34px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
     }
     .card {
+      min-width: 280px;
       background: #121010;
       border: 1px solid var(--border);
       border-radius: 32px;
@@ -464,7 +468,7 @@
       padding: 0 8px;
       font-weight: 600;
       font-size: 0.75rem;
-      color: rgba(0, 0, 0, 0.8);
+      color: rgba(234, 234, 234, 0.92);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -554,9 +558,12 @@
         margin-bottom: 8px;
       }
       .comparison {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+        overflow-x: auto;
+        padding-bottom: 8px;
       }
       .card {
+        min-width: 260px;
         border-radius: 28px;
       }
       .card-header {
@@ -573,6 +580,42 @@
       }
       .footer {
         padding: 0 6px;
+      }
+      .modal-close {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+      }
+      .note-bar-fill {
+        font-size: 0.7rem;
+        padding: 0 6px;
+      }
+    }
+    @media (max-width: 480px) {
+      .page {
+        padding: 16px 12px 32px;
+        margin: 8px;
+      }
+      header {
+        padding: 20px 12px;
+        margin-bottom: 20px;
+      }
+      .brand-mark {
+        width: 80px;
+        height: 80px;
+      }
+      .card-title {
+        font-size: 1.1rem;
+      }
+      .detail {
+        font-size: 0.85rem;
+      }
+      .search-input {
+        padding: 12px 16px 12px 40px;
+        font-size: 0.95rem;
+      }
+      .note-bar {
+        height: 28px;
       }
     }
   </style>
@@ -607,7 +650,7 @@
 
     <div id="productsContainer">
       <div class="comparison" data-pair="god-of-fire">
-        <div class="card" data-name="God of Fire" data-gender="unisex" data-accord="tropical fruity" data-type="Original" data-volume="100 ml" data-price="€190.00" data-image="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.72381.avif" data-pair-name="god-of-fire" data-notes="fruity,tropical,sweet,citric,fresh,woody,fresh-spicy,musky,terpy,old">
+        <div class="card" data-name="God of Fire" data-gender="unisex" data-accord="tropical fruity" data-type="Original" data-volume="100 ml" data-price="€190.00" data-image="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.72381.avif" data-pair-name="god-of-fire" data-notes="fruity,tropical,sweet,citric,fresh,woody,fresh-spicy,musky,terpy,oud">
           <div class="card-header">
             <span class="badge">Original</span>
             <span>100 ml</span>
@@ -620,12 +663,12 @@
             <div class="price">€190.00</div>
           </div>
         </div>
-        <div class="card" data-name="French Avenue Vulcan Feu" data-gender="unisex" data-accord="tropical fruity" data-type="Dupe" data-volume="100 ml" data-price="€50.00" data-image="https://marketplace.bancointer.com.br/ecommerce/images/platform/393c57edc1a640bde9ae1bf1906f909d.png" data-pair-name="god-of-fire" data-notes="tropical,fruity,sweet,citric,woody,fresh,musky,fresh-spicy,terpy,oud">
+        <div class="card" data-name="French Avenue Vulcan Feu" data-gender="unisex" data-accord="tropical fruity" data-type="Dupe" data-volume="100 ml" data-price="€50.00" data-image="https://i.imgur.com/1YbhTGU.png" data-pair-name="god-of-fire" data-notes="tropical,fruity,sweet,citric,woody,fresh,aromatic,fresh and spicy,terpene,amber">
           <div class="card-header">
             <span class="badge">Dupe</span>
             <span>100 ml</span>
           </div>
-          <img src="https://via.placeholder.com/600x750?text=French+Avenue" alt="French Avenue Vulcan Feu">
+          <img src="https://i.imgur.com/1YbhTGU.png" alt="French Avenue Vulcan Feu">
           <div class="card-body">
             <h2 class="card-title">French Avenue Vulcan Feu</h2>
             <div class="detail"><span>Gender</span><span>Unisex</span></div>
@@ -635,63 +678,6 @@
         </div>
       </div>
 
-      <div class="comparison" data-pair="dior-sauvage">
-        <div class="card" data-name="Dior Sauvage" data-gender="men" data-accord="bergamot ambroxan" data-type="Original" data-volume="100 ml" data-price="€105.00" data-image="https://via.placeholder.com/600x750?text=Dior+Sauvage" data-pair-name="dior-sauvage">
-          <div class="card-header">
-            <span class="badge">Original</span>
-            <span>100 ml</span>
-          </div>
-          <img src="https://via.placeholder.com/600x750?text=Dior+Sauvage" alt="Dior Sauvage">
-          <div class="card-body">
-            <h2 class="card-title">Dior Sauvage</h2>
-            <div class="detail"><span>Gender</span><span>Men</span></div>
-            <div class="detail"><span>Main accord</span><span>Bergamot &amp; Ambroxan</span></div>
-            <div class="price">€105.00</div>
-          </div>
-        </div>
-        <div class="card" data-name="Sauvage Style" data-gender="men" data-accord="bergamot ambroxan" data-type="Dupe" data-volume="100 ml" data-price="€28.50" data-image="https://via.placeholder.com/600x750?text=Sauvage+Style" data-pair-name="dior-sauvage" data-notes="fresh,fresh-spicy,citric,woody,fruity,sweet,musky,terpy,tropical,oud">
-          <div class="card-header">
-            <span class="badge">Dupe</span>
-            <span>100 ml</span>
-          </div>
-          <img src="https://via.placeholder.com/600x750?text=Sauvage+Style" alt="Sauvage Style Dupe">
-          <div class="card-body">
-            <h2 class="card-title">Sauvage Style</h2>
-            <div class="detail"><span>Gender</span><span>Men</span></div>
-            <div class="detail"><span>Main accord</span><span>Bergamot &amp; Ambroxan</span></div>
-            <div class="price">€28.50</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="comparison" data-pair="miss-dior">
-        <div class="card" data-name="Miss Dior" data-gender="women" data-accord="floral rose" data-type="Original" data-volume="100 ml" data-price="€115.00" data-image="https://via.placeholder.com/600x750?text=Miss+Dior" data-pair-name="miss-dior">
-          <div class="card-header">
-            <span class="badge">Original</span>
-            <span>100 ml</span>
-          </div>
-          <img src="https://via.placeholder.com/600x750?text=Miss+Dior" alt="Miss Dior">
-          <div class="card-body">
-            <h2 class="card-title">Miss Dior</h2>
-            <div class="detail"><span>Gender</span><span>Women</span></div>
-            <div class="detail"><span>Main accord</span><span>Floral &amp; Rose</span></div>
-            <div class="price">€115.00</div>
-          </div>
-        </div>
-        <div class="card" data-name="Miss Dream" data-gender="women" data-accord="floral rose" data-type="Dupe" data-volume="100 ml" data-price="€35.00" data-image="https://via.placeholder.com/600x750?text=Miss+Dream" data-pair-name="miss-dior" data-notes="fruity,tropical,sweet,citric,woody,fresh,musky,fresh-spicy,terpy,oud">
-          <div class="card-header">
-            <span class="badge">Dupe</span>
-            <span>100 ml</span>
-          </div>
-          <img src="https://via.placeholder.com/600x750?text=Miss+Dream" alt="Miss Dream">
-          <div class="card-body">
-            <h2 class="card-title">Miss Dream</h2>
-            <div class="detail"><span>Gender</span><span>Women</span></div>
-            <div class="detail"><span>Main accord</span><span>Floral &amp; Rose</span></div>
-            <div class="price">€35.00</div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div id="noResults" class="no-results" style="display: none;">
@@ -878,21 +864,46 @@
       'fresh': '#6d9da3',
       'woody': '#553417',
       'fresh-spicy': '#5b8623',
-      'musky': '#9B59B6',
+      'fresh and spicy': '#5b8623',
+      'aromatic': '#2b6b5e',
+      'musky': '#918894',
       'terpy': '#83640c',
+      'terpenig': '#83640c',
+      'terpene': '#83640c',
+      'amber': '#783714',
       'oud': '#392e29'
     };
+
+    const noteLabels = {
+      'fresh-spicy': 'Fresh & Spicy',
+      'fresh and spicy': 'Fresh & Spicy',
+      'aromatic': 'Aromatic',
+      'terpy': 'Terpene',
+      'terpenig': 'Terpene',
+      'terpene': 'Terpene',
+      'amber': 'Amber',
+      'oud': 'Oud'
+    };
+
+    const noteWidths = [100, 95, 90, 75, 55, 52, 49, 46, 43, 40];
+
+    function formatNoteLabel(note) {
+      if (noteLabels[note]) return noteLabels[note];
+      return note
+        .split(/[- ]+/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    }
 
     function generateNotesHTML(notesString) {
       if (!notesString) return '';
       const notes = notesString.split(',').map(n => n.trim().toLowerCase());
       let html = '<div class="notes-display"><h4>Main Notes</h4>';
       
-      // Generate bars with decreasing widths: 100%, 90%, 80%, ... 10%
       notes.forEach((note, index) => {
         const color = noteColors[note] || '#999999';
-        const displayName = note.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        const width = 100 - (index * 10);
+        const displayName = formatNoteLabel(note);
+        const width = noteWidths[index] ?? Math.max(10, 100 - (index * 10));
         html += `<div class="note-bar"><div class="note-bar-fill" style="background-color: ${color}; width: ${width}%;">${displayName}</div></div>`;
       });
       
