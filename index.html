@@ -156,6 +156,7 @@
       box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
+      cursor: pointer;
     }
     .card::before {
       content: "";
@@ -232,7 +233,7 @@
     }
     .search-input {
       width: 100%;
-      padding: 16px 20px 16px 48px;
+      padding: 16px 20px 16px 20px;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(216, 184, 75, 0.3);
       border-radius: 24px;
@@ -249,14 +250,6 @@
       background: rgba(255, 255, 255, 0.1);
       border-color: var(--gold);
       box-shadow: 0 0 20px rgba(216, 184, 75, 0.2);
-    }
-    .search-icon {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--gold);
-      pointer-events: none;
     }
     .filter-buttons {
       display: flex;
@@ -319,23 +312,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px);
+      padding: 16px;
     }
     .modal-content {
       background: rgba(18, 16, 16, 0.98);
       border: 1px solid rgba(216, 184, 75, 0.2);
-      border-radius: 40px;
+      border-radius: 32px;
       padding: 40px;
-      max-width: 1000px;
-      width: 90%;
+      max-width: 900px;
+      width: 100%;
       max-height: 90vh;
       overflow-y: auto;
       box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
       position: relative;
-      scrollbar-width: none;
     }
     .modal-content::-webkit-scrollbar {
-      display: none;
+      width: 6px;
+    }
+    .modal-content::-webkit-scrollbar-thumb {
+      background: rgba(216, 184, 75, 0.3);
+      border-radius: 10px;
     }
     .modal-close {
       position: absolute;
@@ -353,7 +350,7 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      padding: 0;
+      z-index: 10;
     }
     .modal-close:hover {
       background: rgba(216, 184, 75, 0.4);
@@ -363,7 +360,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
+      margin-top: 10px;
     }
     .detail-image {
       display: flex;
@@ -372,17 +370,17 @@
     }
     .detail-image img {
       width: 100%;
-      max-width: 300px;
+      max-width: 280px;
+      height: auto;
       border-radius: 24px;
       border: 1px solid rgba(216, 184, 75, 0.2);
+      object-fit: cover;
     }
     .detail-info h2 {
-      margin: 0 0 24px;
+      margin: 0 0 20px;
       font-size: 1.8rem;
       color: var(--text);
-    }
-    .detail-specs {
-      margin-bottom: 24px;
+      font-family: "Cormorant Garamond", Georgia, serif;
     }
     .detail-specs div {
       display: flex;
@@ -397,15 +395,15 @@
       color: var(--text);
     }
     .detail-price {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--gold);
       margin-top: 20px;
     }
     .comparison-detail {
-      margin-top: 40px;
+      margin-top: 32px;
       border-top: 1px solid rgba(216, 184, 75, 0.2);
-      padding-top: 40px;
+      padding-top: 32px;
     }
     .comparison-detail h3 {
       text-align: center;
@@ -418,7 +416,7 @@
     .comparison-rows {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 24px;
     }
     .comparison-item {
       background: rgba(255, 255, 255, 0.02);
@@ -432,6 +430,9 @@
       margin: 0 0 20px;
       padding-bottom: 12px;
       border-bottom: 1px solid rgba(216, 184, 75, 0.2);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
     }
     .comparison-item .detail {
       margin: 12px 0;
@@ -439,13 +440,13 @@
     .notes-display {
       margin-top: 24px;
       padding-top: 20px;
-      border-top: 1px solid rgba(216, 184, 75, 0.2);
+      border-top: 1px solid rgba(216, 184, 75, 0.15);
     }
     .notes-display h4 {
       text-align: left;
       color: var(--gold);
       margin: 0 0 16px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
@@ -461,26 +462,19 @@
       border-radius: 6px;
       display: flex;
       align-items: center;
-      padding: 0 8px;
+      padding: 0 12px;
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: rgba(234, 234, 234, 0.92);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .card {
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-    }
     .footer {
       text-align: center;
       color: var(--muted);
       font-size: 1rem;
-      margin-top: 26px;
+      margin-top: 40px;
     }
     .footer a {
       color: var(--gold);
@@ -490,49 +484,41 @@
     .footer a:hover {
       color: #f6e8b5;
     }
-    @media (max-width: 860px) {
-      .modal-content {
-        padding: 24px;
-        max-width: 95%;
-      }
-      .modal-body {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .comparison-rows {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-    }
+
+    /* --- GLOBALE RESPONSIVE ANPASSUNGEN FÜR MOBILGERÄTE --- */
     @media (max-width: 860px) {
       body {
         background: #090707;
       }
       .page {
-        padding: 28px 16px 40px;
-        border-radius: 28px;
-        margin: 0 12px;
+        padding: 24px 16px 40px;
+        border-radius: 24px;
+        margin: 12px;
+        border: none;
       }
       header {
-        padding: 28px 18px;
-        margin-bottom: 30px;
+        padding: 32px 16px;
+        margin-bottom: 32px;
+        border-radius: 24px;
       }
       header h1 {
-        font-size: clamp(2.4rem, 8vw, 3.2rem);
+        font-size: clamp(2rem, 7vw, 2.8rem);
       }
       .brand {
         flex-direction: column;
         gap: 16px;
+        margin-bottom: 16px;
       }
       .brand-mark {
         width: 100px;
         height: 100px;
+        border-radius: 24px;
       }
       .brand-text {
         text-align: center;
       }
       .brand-text h1 {
-        font-size: clamp(1.8rem, 8vw, 2.4rem);
+        font-size: 1.8rem;
       }
       .brand-text p,
       header p {
@@ -540,7 +526,12 @@
         line-height: 1.6;
       }
       .search-section {
-        margin-bottom: 24px;
+        margin-bottom: 32px;
+        gap: 16px;
+      }
+      .filter-label {
+        width: 100%;
+        margin-bottom: 4px;
       }
       .filter-buttons {
         gap: 8px;
@@ -549,66 +540,79 @@
         padding: 8px 14px;
         font-size: 0.8rem;
       }
-      .filter-label {
-        width: 100%;
-        margin-bottom: 8px;
-      }
       .comparison {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Karten auf Handys untereinander */
+        gap: 24px;
       }
       .card {
-        border-radius: 28px;
+        border-radius: 24px;
       }
       .card-header {
-        padding: 18px 18px 0;
+        padding: 20px 20px 0;
       }
       .card-body {
-        padding: 22px 20px 24px;
+        padding: 20px;
       }
-      .card-title {
-        font-size: 1.25rem;
+      
+      /* Modal Mobile Optimierung */
+      .modal-content {
+        padding: 24px 16px;
+        border-radius: 24px;
+        max-height: 95vh;
       }
-      .price {
-        font-size: 1.2rem;
+      .modal-body {
+        grid-template-columns: 1fr; /* Bild und Text untereinander */
+        gap: 24px;
       }
-      .footer {
-        padding: 0 6px;
+      .detail-image img {
+        max-width: 200px; /* Bildgröße auf Mobilgeräten etwas kompakter */
       }
-      .modal-close {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
+      .detail-info h2 {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 16px;
       }
-      .note-bar-fill {
-        font-size: 0.7rem;
-        padding: 0 6px;
+      .comparison-rows {
+        grid-template-columns: 1fr; /* Vergleichsboxen untereinander */
+        gap: 16px;
+      }
+      .comparison-item {
+        padding: 16px;
       }
     }
+
     @media (max-width: 480px) {
       .page {
-        padding: 16px 12px 32px;
-        margin: 8px;
+        margin: 8px 4px;
+        padding: 16px 12px;
       }
       header {
-        padding: 20px 12px;
-        margin-bottom: 20px;
-      }
-      .brand-mark {
-        width: 80px;
-        height: 80px;
+        padding: 24px 12px;
       }
       .card-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
       .detail {
         font-size: 0.85rem;
+        margin: 10px 0;
       }
-      .search-input {
-        padding: 12px 16px 12px 40px;
-        font-size: 0.95rem;
+      .price {
+        font-size: 1.2rem;
+        margin-top: 16px;
       }
       .note-bar {
         height: 28px;
+      }
+      .note-bar-fill {
+        font-size: 0.75rem;
+        padding: 0 8px;
+      }
+      .modal-close {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
       }
     }
   </style>
@@ -670,7 +674,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <div id="noResults" class="no-results" style="display: none;">
@@ -703,6 +706,7 @@
       <p>For inquiries or orders, contact us on Telegram: <a href="https://t.me/ae12po" target="_blank" rel="noopener noreferrer">@ae12po</a></p>
     </div>
   </div>
+
   <script>
     const canvas = document.getElementById('brandLogo');
     const ctx = canvas.getContext('2d');
@@ -710,24 +714,17 @@
     const height = canvas.height;
     const centerX = width / 2;
     const centerY = height / 2;
-    const particles = Array.from({ length: 14 }, (_, i) => ({
-      angle: (Math.PI * 2 / 14) * i,
-      speed: 0.003 + Math.random() * 0.003,
-      radius: 44 + Math.random() * 16,
-      size: 1.4 + Math.random() * 1.6,
-    }));
 
     function drawLogo(time) {
       const t = time * 0.001;
       ctx.clearRect(0, 0, width, height);
 
-      // Saturn-like rings only - rotating
       ctx.save();
       ctx.translate(centerX, centerY);
       ctx.rotate(t * 0.3);
       ctx.translate(-centerX, -centerY);
 
-      // Main outer ring (tilted)
+      // Main outer ring
       ctx.save();
       ctx.translate(centerX, centerY);
       ctx.rotate(Math.PI / 6);
@@ -765,7 +762,6 @@
 
       ctx.restore();
 
-      // Number 12 with gradient - centered
       const textGradient = ctx.createLinearGradient(centerX - 36, centerY - 40, centerX + 36, centerY + 40);
       textGradient.addColorStop(0, '#f9e3a3');
       textGradient.addColorStop(0.45, '#d7b04c');
@@ -798,7 +794,6 @@
     function updateDisplay() {
       const searchTerm = searchInput.value.toLowerCase();
       const allComparisons = document.querySelectorAll('.comparison');
-      const allCards = document.querySelectorAll('.card');
       let visibleCount = 0;
 
       allComparisons.forEach(comparison => {
@@ -934,13 +929,11 @@
         document.getElementById('detailPrice').textContent = price;
         document.getElementById('detailImage').src = image;
 
-        // Get all cards in the same pair
         const pairCards = document.querySelectorAll(`[data-pair-name="${pairName}"]`);
-        const comparisonHTML = `
+        let html = `
           <h3>Comparison: Original vs Dupe</h3>
           <div class="comparison-rows">
         `;
-        let html = comparisonHTML;
 
         pairCards.forEach(pCard => {
           const pName = pCard.getAttribute('data-name');
@@ -967,7 +960,6 @@
 
         html += `</div>`;
         document.getElementById('comparisonDetail').innerHTML = html;
-
         detailModal.style.display = 'flex';
       });
     });
