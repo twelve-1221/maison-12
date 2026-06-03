@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison 12</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='g12' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f9e3a3;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%23d7b04c;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%238b6d2f;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='%23090707' width='128' height='128'/%3E%3Cg transform='translate(64,64)'%3E%3Cellipse cx='0' cy='0' rx='60' ry='22' fill='none' stroke='%23d8b84b' stroke-width='1.5' opacity='0.65' transform='rotate(30)'/%3E%3Cellipse cx='0' cy='0' rx='50' ry='18' fill='none' stroke='%23d8b84b' stroke-width='1.3' opacity='0.45' transform='rotate(50)'/%3E%3Cellipse cx='0' cy='0' rx='40' ry='14' fill='none' stroke='%23d8b84b' stroke-width='1.2' opacity='0.35' transform='rotate(-20)'/%3E%3C/g%3E%3Ctext x='64' y='74' font-family='Georgia, serif' font-size='48' font-weight='800' text-anchor='middle' fill='url(%23g12)' letter-spacing='1'%3E12%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #090707;
+      --page: #0d0c0c;
+      --surface: #141212;
+      --surface-soft: rgba(255, 255, 255, 0.04);
+      --text: #fbf5e9;
+      --muted: #b3a88a;
+      --gold: #d8b84b;
+      --gold-muted: rgba(216, 184, 75, 0.16);
+      --border: rgba(216, 184, 75, 0.22);
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(circle at top left, rgba(255, 214, 119, 0.08), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.04), transparent 20%),
+        linear-gradient(180deg, #070606 0%, #090707 55%, #0f0d0d 100%);
+      color: var(--text);
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar {
+      display: none;
+    }
+    .page {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 40px 24px 72px;
+      background: rgba(14, 12, 12, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 40px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 46px;
+      padding: 40px 30px;
+      background: rgba(17, 15, 15, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      box-shadow: 0 30px 90px var(--shadow);
+      backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(216, 184, 75, 0.08), transparent 32%);
+      pointer-events: none;
+    }
+    header h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.8rem, 4vw, 4.4rem);
+      letter-spacing: 0.16em;
+      color: var(--text);
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin: 0 auto 28px;
+      padding: 0 10px;
+      max-width: 780px;
+      position: relative;
+      z-index: 1;
+    }
+    .brand-mark {
+      position: relative;
+      width: 128px;
+      height: 128px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(255, 224, 145, 0.15), rgba(25, 22, 20, 0.95));
+      border: 1px solid rgba(216, 184, 75, 0.28);
+      box-shadow: 0 24px 52px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+    .brand-mark canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      pointer-events: none;
+    }
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      filter: blur(1.5px);
+      pointer-events: none;
+    }
+    .brand-text {
+      text-align: left;
+      position: relative;
+      z-index: 1;
+    }
+    .brand-text h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.02;
+      color: var(--text);
+    }
+    .brand-text p,
+    header p {
+      margin: 10px auto 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+      margin-bottom: 34px;
+    }
+    .card {
+      background: #121010;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, rgba(216, 184, 75, 0.65), transparent);
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 36px 96px rgba(0, 0, 0, 0.45);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 24px 0;
+    }
+    .badge {
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(216, 184, 75, 0.14);
+      color: #f2e8c0;
+    }
+    .card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 4 / 5;
+    }
+    .card-body {
+      padding: 28px 28px 30px;
+      text-align: left;
+    }
+    .card-title {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 14px 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .detail span:first-child {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .price {
+      margin-top: 24px;
+      font-size: 1.32rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .search-section {
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .search-container {
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 16px 20px 16px 48px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(216, 184, 75, 0.3);
+      border-radius: 24px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      transition: all 0.3s ease;
+    }
+    .search-input::placeholder {
+      color: var(--muted);
+    }
+    .search-input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(216, 184, 75, 0.2);
+    }
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      pointer-events: none;
+    }
+    .filter-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-label {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .filter-btn {
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(216, 184, 75, 0.3);
+      border-radius: 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    }
+    .filter-btn:hover {
+      background: rgba(216, 184, 75, 0.12);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .filter-btn.active {
+      background: rgba(216, 184, 75, 0.25);
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 15px rgba(216, 184, 75, 0.3);
+    }
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    .card.hidden {
+      display: none;
+    }
+    .comparison.hidden {
+      display: none;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .modal-content {
+      background: rgba(18, 16, 16, 0.98);
+      border: 1px solid rgba(216, 184, 75, 0.2);
+      border-radius: 40px;
+      padding: 40px;
+      max-width: 1000px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+      position: relative;
+      scrollbar-width: none;
+    }
+    .modal-content::-webkit-scrollbar {
+      display: none;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(216, 184, 75, 0.2);
+      border: 1px solid rgba(216, 184, 75, 0.3);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+    .modal-close:hover {
+      background: rgba(216, 184, 75, 0.4);
+      color: var(--gold);
+    }
+    .modal-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .detail-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .detail-image img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 24px;
+      border: 1px solid rgba(216, 184, 75, 0.2);
+    }
+    .detail-info h2 {
+      margin: 0 0 24px;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+    .detail-specs {
+      margin-bottom: 24px;
+    }
+    .detail-specs div {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(216, 184, 75, 0.1);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .detail-specs span:first-child {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .detail-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 20px;
+    }
+    .comparison-detail {
+      margin-top: 40px;
+      border-top: 1px solid rgba(216, 184, 75, 0.2);
+      padding-top: 40px;
+    }
+    .comparison-detail h3 {
+      text-align: center;
+      color: var(--gold);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 1.1rem;
+    }
+    .comparison-rows {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .comparison-item {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid rgba(216, 184, 75, 0.1);
+    }
+    .comparison-item h4 {
+      text-align: center;
+      color: var(--gold);
+      margin: 0 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(216, 184, 75, 0.2);
+    }
+    .comparison-item .detail {
+      margin: 12px 0;
+    }
+    .notes-display {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(216, 184, 75, 0.2);
+    }
+    .notes-display h4 {
+      text-align: left;
+      color: var(--gold);
+      margin: 0 0 16px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .note-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0;
+      height: 32px;
+    }
+    .note-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: rgba(234, 234, 234, 0.92);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+    }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-top: 26px;
+    }
+    .footer a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(216, 184, 75, 0.3);
+    }
+    .footer a:hover {
+      color: #f6e8b5;
+    }
+    @media (max-width: 860px) {
+      .modal-content {
+        padding: 24px;
+        max-width: 95%;
+      }
+      .modal-body {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .comparison-rows {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+    @media (max-width: 860px) {
+      body {
+        background: #090707;
+      }
+      .page {
+        padding: 28px 16px 40px;
+        border-radius: 28px;
+        margin: 0 12px;
+      }
+      header {
+        padding: 28px 18px;
+        margin-bottom: 30px;
+      }
+      header h1 {
+        font-size: clamp(2.4rem, 8vw, 3.2rem);
+      }
+      .brand {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .brand-mark {
+        width: 100px;
+        height: 100px;
+      }
+      .brand-text {
+        text-align: center;
+      }
+      .brand-text h1 {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+      }
+      .brand-text p,
+      header p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .search-section {
+        margin-bottom: 24px;
+      }
+      .filter-buttons {
+        gap: 8px;
+      }
+      .filter-btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+      }
+      .filter-label {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      .comparison {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        border-radius: 28px;
+      }
+      .card-header {
+        padding: 18px 18px 0;
+      }
+      .card-body {
+        padding: 22px 20px 24px;
+      }
+      .card-title {
+        font-size: 1.25rem;
+      }
+      .price {
+        font-size: 1.2rem;
+      }
+      .footer {
+        padding: 0 6px;
+      }
+      .modal-close {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+      }
+      .note-bar-fill {
+        font-size: 0.7rem;
+        padding: 0 6px;
+      }
+    }
+    @media (max-width: 480px) {
+      .page {
+        padding: 16px 12px 32px;
+        margin: 8px;
+      }
+      header {
+        padding: 20px 12px;
+        margin-bottom: 20px;
+      }
+      .brand-mark {
+        width: 80px;
+        height: 80px;
+      }
+      .card-title {
+        font-size: 1.1rem;
+      }
+      .detail {
+        font-size: 0.85rem;
+      }
+      .search-input {
+        padding: 12px 16px 12px 40px;
+        font-size: 0.95rem;
+      }
+      .note-bar {
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-mark">
+          <canvas id="brandLogo" width="128" height="128" aria-hidden="true"></canvas>
+        </div>
+        <div class="brand-text">
+          <h1>Maison 12</h1>
+          <p>Black gold perfumery. A modern presentation of designer scents and premium dupes for a refined clientele.</p>
+        </div>
+      </div>
+      <p>Discover a curated comparison of luxury originals and elegant replicas with detailed scent notes and pricing.</p>
+    </header>
+
+    <div class="search-section">
+      <div class="search-container">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search by name or accord (e.g., Fruity, Bergamot)...">
+      </div>
+      <div class="filter-buttons">
+        <span class="filter-label">Filter by Gender:</span>
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="unisex">Unisex</button>
+        <button class="filter-btn" data-filter="men">Men</button>
+        <button class="filter-btn" data-filter="women">Women</button>
+      </div>
+    </div>
+
+    <div id="productsContainer">
+      <div class="comparison" data-pair="god-of-fire">
+        <div class="card" data-name="God of Fire" data-gender="unisex" data-accord="tropical fruity" data-type="Original" data-volume="100 ml" data-price="€190.00" data-image="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.72381.avif" data-pair-name="god-of-fire" data-notes="fruity,tropical,sweet,citric,fresh,woody,fresh-spicy,musky,terpy,oud">
+          <div class="card-header">
+            <span class="badge">Original</span>
+            <span>100 ml</span>
+          </div>
+          <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.72381.avif" alt="God of Fire">
+          <div class="card-body">
+            <h2 class="card-title">God of Fire</h2>
+            <div class="detail"><span>Gender</span><span>Unisex</span></div>
+            <div class="detail"><span>Main accord</span><span>Tropical &amp; Fruity</span></div>
+            <div class="price">€190.00</div>
+          </div>
+        </div>
+        <div class="card" data-name="French Avenue Vulcan Feu" data-gender="unisex" data-accord="tropical fruity" data-type="Dupe" data-volume="100 ml" data-price="€50.00" data-image="https://i.imgur.com/1YbhTGU.png" data-pair-name="god-of-fire" data-notes="tropical,fruity,sweet,citric,woody,fresh,aromatic,fresh and spicy,terpene,amber">
+          <div class="card-header">
+            <span class="badge">Dupe</span>
+            <span>100 ml</span>
+          </div>
+          <img src="https://i.imgur.com/1YbhTGU.png" alt="French Avenue Vulcan Feu">
+          <div class="card-body">
+            <h2 class="card-title">French Avenue Vulcan Feu</h2>
+            <div class="detail"><span>Gender</span><span>Unisex</span></div>
+            <div class="detail"><span>Main accord</span><span>Tropical &amp; Fruity</span></div>
+            <div class="price">€50.00</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="noResults" class="no-results" style="display: none;">
+      No perfumes found. Try a different search or filter.
+    </div>
+
+    <div id="detailModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <button class="modal-close" id="closeModal">&times;</button>
+        <div class="modal-body">
+          <div class="detail-image">
+            <img id="detailImage" src="" alt="Perfume">
+          </div>
+          <div class="detail-info">
+            <h2 id="detailTitle"></h2>
+            <div class="detail-specs">
+              <div><span>Volume</span><span id="detailVolume"></span></div>
+              <div><span>Type</span><span id="detailType"></span></div>
+              <div><span>Gender</span><span id="detailGender"></span></div>
+              <div><span>Main Accord</span><span id="detailAccord"></span></div>
+            </div>
+            <div class="detail-price" id="detailPrice"></div>
+          </div>
+        </div>
+        <div class="comparison-detail" id="comparisonDetail"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>For inquiries or orders, contact us on Telegram: <a href="https://t.me/ae12po" target="_blank" rel="noopener noreferrer">@ae12po</a></p>
+    </div>
+  </div>
+  <script>
+    const canvas = document.getElementById('brandLogo');
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const particles = Array.from({ length: 14 }, (_, i) => ({
+      angle: (Math.PI * 2 / 14) * i,
+      speed: 0.003 + Math.random() * 0.003,
+      radius: 44 + Math.random() * 16,
+      size: 1.4 + Math.random() * 1.6,
+    }));
+
+    function drawLogo(time) {
+      const t = time * 0.001;
+      ctx.clearRect(0, 0, width, height);
+
+      // Saturn-like rings only - rotating
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(t * 0.3);
+      ctx.translate(-centerX, -centerY);
+
+      // Main outer ring (tilted)
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(Math.PI / 6);
+      ctx.translate(-centerX, -centerY);
+      ctx.strokeStyle = 'rgba(216, 184, 75, 0.65)';
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.ellipse(centerX, centerY, 60, 22, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      // Second ring
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(Math.PI / 5);
+      ctx.translate(-centerX, -centerY);
+      ctx.strokeStyle = 'rgba(216, 184, 75, 0.45)';
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.ellipse(centerX, centerY, 50, 18, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      // Third ring
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(-Math.PI / 7);
+      ctx.translate(-centerX, -centerY);
+      ctx.strokeStyle = 'rgba(216, 184, 75, 0.35)';
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.ellipse(centerX, centerY, 40, 14, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.restore();
+
+      // Number 12 with gradient - centered
+      const textGradient = ctx.createLinearGradient(centerX - 36, centerY - 40, centerX + 36, centerY + 40);
+      textGradient.addColorStop(0, '#f9e3a3');
+      textGradient.addColorStop(0.45, '#d7b04c');
+      textGradient.addColorStop(1, '#8b6d2f');
+
+      ctx.font = '800 56px Georgia, serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.shadowColor = 'rgba(216, 184, 75, 0.5)';
+      ctx.shadowBlur = 20;
+      ctx.fillStyle = textGradient;
+      ctx.fillText('12', centerX, centerY + 2);
+
+      ctx.lineWidth = 2.2;
+      ctx.strokeStyle = 'rgba(255, 239, 157, 0.8)';
+      ctx.strokeText('12', centerX, centerY + 2);
+
+      window.requestAnimationFrame(drawLogo);
+    }
+
+    window.requestAnimationFrame(drawLogo);
+
+    // Filter and Search Functionality
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productsContainer = document.getElementById('productsContainer');
+    const noResults = document.getElementById('noResults');
+    let currentFilter = 'all';
+
+    function updateDisplay() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const allComparisons = document.querySelectorAll('.comparison');
+      const allCards = document.querySelectorAll('.card');
+      let visibleCount = 0;
+
+      allComparisons.forEach(comparison => {
+        const cards = comparison.querySelectorAll('.card');
+        let pairVisible = false;
+
+        cards.forEach(card => {
+          const name = card.getAttribute('data-name').toLowerCase();
+          const gender = card.getAttribute('data-gender');
+          const accord = card.getAttribute('data-accord').toLowerCase();
+
+          const matchesSearch = name.includes(searchTerm) || accord.includes(searchTerm);
+          const matchesFilter = currentFilter === 'all' || gender === currentFilter;
+          const shouldShow = matchesSearch && matchesFilter;
+
+          if (shouldShow) {
+            card.classList.remove('hidden');
+            pairVisible = true;
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (pairVisible) {
+          comparison.classList.remove('hidden');
+        } else {
+          comparison.classList.add('hidden');
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    searchInput.addEventListener('input', updateDisplay);
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentFilter = button.getAttribute('data-filter');
+        updateDisplay();
+      });
+    });
+
+    // Modal functionality
+    const detailModal = document.getElementById('detailModal');
+    const closeModal = document.getElementById('closeModal');
+    const allCards = document.querySelectorAll('.card');
+
+    const noteColors = {
+      'fruity': '#fc4b29',
+      'tropical': '#db9d0b',
+      'sweet': '#cc3135',
+      'citric': '#b6ba42',
+      'fresh': '#6d9da3',
+      'woody': '#553417',
+      'fresh-spicy': '#5b8623',
+      'fresh and spicy': '#5b8623',
+      'aromatic': '#2b6b5e',
+      'musky': '#918894',
+      'terpy': '#83640c',
+      'terpenig': '#83640c',
+      'terpene': '#83640c',
+      'amber': '#783714',
+      'oud': '#392e29'
+    };
+
+    const noteLabels = {
+      'fresh-spicy': 'Fresh & Spicy',
+      'fresh and spicy': 'Fresh & Spicy',
+      'aromatic': 'Aromatic',
+      'terpy': 'Terpene',
+      'terpenig': 'Terpene',
+      'terpene': 'Terpene',
+      'amber': 'Amber',
+      'oud': 'Oud'
+    };
+
+    const noteWidths = [100, 95, 90, 75, 55, 52, 49, 46, 43, 40];
+
+    function formatNoteLabel(note) {
+      if (noteLabels[note]) return noteLabels[note];
+      return note
+        .split(/[- ]+/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    }
+
+    function generateNotesHTML(notesString) {
+      if (!notesString) return '';
+      const notes = notesString.split(',').map(n => n.trim().toLowerCase());
+      let html = '<div class="notes-display"><h4>Main Notes</h4>';
+      
+      notes.forEach((note, index) => {
+        const color = noteColors[note] || '#999999';
+        const displayName = formatNoteLabel(note);
+        const width = noteWidths[index] ?? Math.max(10, 100 - (index * 10));
+        html += `<div class="note-bar"><div class="note-bar-fill" style="background-color: ${color}; width: ${width}%;">${displayName}</div></div>`;
+      });
+      
+      html += '</div>';
+      return html;
+    }
+
+    closeModal.addEventListener('click', () => {
+      detailModal.style.display = 'none';
+    });
+
+    detailModal.addEventListener('click', (e) => {
+      if (e.target === detailModal) {
+        detailModal.style.display = 'none';
+      }
+    });
+
+    allCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const name = card.getAttribute('data-name');
+        const gender = card.getAttribute('data-gender');
+        const accord = card.getAttribute('data-accord');
+        const type = card.getAttribute('data-type');
+        const volume = card.getAttribute('data-volume');
+        const price = card.getAttribute('data-price');
+        const image = card.getAttribute('data-image');
+        const pairName = card.getAttribute('data-pair-name');
+        const notes = card.getAttribute('data-notes');
+
+        document.getElementById('detailTitle').textContent = name;
+        document.getElementById('detailVolume').textContent = volume;
+        document.getElementById('detailType').textContent = type;
+        document.getElementById('detailGender').textContent = gender.charAt(0).toUpperCase() + gender.slice(1);
+        document.getElementById('detailAccord').textContent = accord.charAt(0).toUpperCase() + accord.slice(1).replace(' ', ' & ');
+        document.getElementById('detailPrice').textContent = price;
+        document.getElementById('detailImage').src = image;
+
+        // Get all cards in the same pair
+        const pairCards = document.querySelectorAll(`[data-pair-name="${pairName}"]`);
+        const comparisonHTML = `
+          <h3>Comparison: Original vs Dupe</h3>
+          <div class="comparison-rows">
+        `;
+        let html = comparisonHTML;
+
+        pairCards.forEach(pCard => {
+          const pName = pCard.getAttribute('data-name');
+          const pType = pCard.getAttribute('data-type');
+          const pGender = pCard.getAttribute('data-gender');
+          const pAccord = pCard.getAttribute('data-accord');
+          const pPrice = pCard.getAttribute('data-price');
+          const pVolume = pCard.getAttribute('data-volume');
+          const pNotes = pCard.getAttribute('data-notes');
+
+          html += `
+            <div class="comparison-item">
+              <h4>${pType}</h4>
+              <div class="detail"><span>Name</span><span>${pName}</span></div>
+              <div class="detail"><span>Gender</span><span>${pGender.charAt(0).toUpperCase() + pGender.slice(1)}</span></div>
+              <div class="detail"><span>Volume</span><span>${pVolume}</span></div>
+              <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(216, 184, 75, 0.2);">
+                <span style="font-weight: 600; color: var(--gold); font-size: 1.2rem;">${pPrice}</span>
+              </div>
+              ${generateNotesHTML(pNotes)}
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+        document.getElementById('comparisonDetail').innerHTML = html;
+
+        detailModal.style.display = 'flex';
+      });
+    });
+  </script>
+</body>
+</html>
